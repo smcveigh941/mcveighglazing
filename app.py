@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, send_from_directory
+from flask import Flask, render_template, request, redirect, session, send_from_directory, url_for
 from flask_mail import Mail, Message
 import time
 import datetime
@@ -88,7 +88,7 @@ def manage_story():
             if ("[" + str(i) + "]") in request.form.keys():
                 delete_story(stories[i][0])
 
-    return redirect("/testimonials")
+    return redirect(url_for('testimonials'))
 
 
 @app.route("/sendmessage", methods=['POST'])
@@ -100,7 +100,7 @@ def sendmessage():
     msg = Message('Job Query', sender=app.config.get('MAIL_USERNAME'), recipients=app.config.get('MAIL_RECIPIENTS'))
     msg.body = name + " has sent you a message using the website.\n\n" + "Phone Number: " + number + "\nEmail: " + email + "\n\nMessage: \n\n" + message
     mail.send(msg)
-    return redirect('/contact?message-sent=true')
+    return redirect(url_for('contact', messagesent=True))
 
 
 @app.route("/submitstory", methods=['POST'])
@@ -111,13 +111,13 @@ def submit_story():
     msg = Message('Story Submitted', sender=app.config.get('MAIL_USERNAME'), recipients=app.config.get('MAIL_RECIPIENTS'))
     msg.body = "Someone has submitted a testimonial to the website.\n\n" + "Name: " + name + "\n\nMessage: \n\n" + story + "\n\nLog in to the website to review this testimonial"
     mail.send(msg)
-    return redirect('/testimonials?story-sent=true')
+    return redirect(url_for('testimonials', storysent=True))
 
 
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect("/")
+    return redirect(url_for('main'))
 
 
 @app.route("/login", methods=['POST'])
@@ -125,7 +125,7 @@ def login():
     input = request.form['authcode']
     if input == app.config.get('AUTH_PASSWORD'):
         session['admin'] = "True"
-        return redirect('/')
+        return redirect(url_for('main'))
     else:
         return render_template('error.html', error=dict(title="Authorisation Code Invalid",
                                                         message="The authorisation code you entered was not valid. "
@@ -158,7 +158,7 @@ def delete_image():
     file = request.args.get('file')
     page = request.args.get('page')
     os.remove(os.path.join('static/images/uploads', file))
-    return redirect('/gallery?page=' + page)
+    return redirect(url_for('gallery', page=page))
 
 
 @app.route("/testimonials")
@@ -205,7 +205,7 @@ def upload():
 
         image.save(os.path.join('static/images/uploads', new_name))
         image.close()
-    return redirect('/gallery')
+    return redirect(url_for('gallery'))
 
 
 @app.errorhandler(500)
