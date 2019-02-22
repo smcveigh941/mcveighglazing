@@ -3,3 +3,5 @@ config.json
 data.db
 static/images/uploads
 venv
+__pycache__/
+*pyc
