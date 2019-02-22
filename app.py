@@ -123,7 +123,7 @@ def logout():
 @app.route("/login", methods=['POST'])
 def login():
     input = request.form['authcode']
-    if input == app.config.get('AUTH_CODE'):
+    if input == app.config.get('AUTH_PASSWORD'):
         session['admin'] = "True"
         return redirect('/')
     else:
