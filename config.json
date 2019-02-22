@@ -1,0 +1,8 @@
+{
+  "MAIL_SERVER":"smtp.gmail.com",
+  "MAIL_PORT":465,
+  "MAIL_USERNAME":"mcveighglazingweb@gmail.com",
+  "MAIL_PASSWORD":"martinmc1",
+  "MAIL_RECIPIENTS":["martin@mcveighglazing.com", "smcveigh941@gmail.com"],
+  "AUTH_PASSWORD":"martinmc1"
+}

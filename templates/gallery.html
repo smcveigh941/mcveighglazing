@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="static/images/favicon.ico" type="image/x-icon"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>McVeigh Glazing - Gallery</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+<main>
+    <div class="navbar-fixed">
+        <nav>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons" style="color: yellow">menu</i></a>
+            <div class="nav-wrapper blue">
+                <a href="#" class="brand-logo">McVeigh Glazing</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="/where">Where?</a></li>
+                    <li><a href="/testimonials">Testimonials</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                </ul>
+                <ul class="side-nav blue darken-4" id="mobile-demo">
+                    <li class="center"><a href="/" class="yellow-text">Home</a></li>
+                    <li class="center"><a href="#" class="yellow-text">Gallery</a></li>
+                    <li class="center"><a href="/where" class="yellow-text">Where?</a></li>
+                    <li class="center"><a href="/testimonials" class="yellow-text">Testimonials</a></li>
+                    <li class="center"><a href="/contact" class="yellow-text">Contact Us</a></li>
+                    <div class="container">
+                        <div class="row center">
+                            <img src="static/images/logo.png" style="width:100%; opacity: 0.7">
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    {% if admin %}
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <h4>Upload Images</h4>
+            <div style="display: none;" id="loader" class="loader"></div>
+            <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
+                <input id="pic-field" type="file" name="file[]" accept="image/*" multiple>
+                <input type="submit" class="btn blue">
+            </form>
+        </div>
+    </div>
+    <div class="container center">
+        <div class="section">
+            <button id="modalButton" class="btn-large waves-effect waves-light blue lighten-1">Upload Images</button>
+        </div>
+        <div class="divider grey"></div>
+    </div>
+    {% endif %}
+    <div class="container center">
+        <div class="row">
+            {% if prev_button %}
+            <a href="/gallery?page={{page - 1}}" class="btn-large waves-effect waves-light blue lighten-1 left">Previous Page</a>
+            {% endif %}
+            {% if next_button %}
+            <a href="/gallery?page={{page + 1}}" class="btn-large waves-effect waves-light blue lighten-1 right">Next Page</a>
+            {% endif %}
+        </div>
+        {% if prev_button or next_button %}
+        <div class="divider grey"></div>
+        {% endif %}
+    </div>
+    <div class="container">
+        {% if column_0|length == 0 %}
+            <div class="row">
+                <div class="container">
+                    <div class="section">
+                        <div class="icon-block center">
+                            <h2 class="center brown-text"><i class="material-icons">mood_bad</i></h2>
+                            <h5 class="center">Nothing to see here!</h5>
+
+                            <p class="light">
+                                The admin has not uploaded any images to the gallery. Please come back later!
+                            </p>
+                            <div class="row center">
+                                <a href="/" class="btn-large waves-effect waves-light blue lighten-1">Go Home!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="collage-row">
+                <div id="column-1" class="collage-column">
+                    {% for file in column_0 %}
+                        <div class="card hoverable" style="display:run-in;">
+                            <div class="card-image">
+                                <img class="materialboxed" src="/static/images/uploads/{{file}}">
+                            </div>
+                            {% if admin %}
+                            <div class="card-action">
+                                <a class="red-text" href="/delete?page={{page}}&file={{file}}">Delete Image</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div id="column-2" class="collage-column">
+                    {% for file in column_1 %}
+                        <div class="card hoverable" style="display:run-in;">
+                            <div class="card-image">
+                                <img class="materialboxed" src="/static/images/uploads/{{file}}">
+                            </div>
+                            {% if admin %}
+                            <div class="card-action">
+                                <a class="red-text" href="/delete?page={{page}}&file={{file}}">Delete Image</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div id="column-3" class="collage-column">
+                    {% for file in column_2 %}
+                        <div class="card hoverable" style="display:run-in;">
+                            <div class="card-image">
+                                <img class="materialboxed" src="/static/images/uploads/{{file}}">
+                            </div>
+                            {% if admin %}
+                            <div class="card-action">
+                                <a class="red-text" href="/delete?page={{page}}&file={{file}}">Delete Image</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div id="column-4" class="collage-column">
+                    {% for file in column_3 %}
+                        <div class="card hoverable" style="display:run-in;">
+                            <div class="card-image">
+                                <img class="materialboxed" src="/static/images/uploads/{{file}}">
+                            </div>
+                            {% if admin %}
+                            <div class="card-action">
+                                <a class="red-text" href="/delete?page={{page}}&file={{file}}">Delete Image</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</main>
+
+<footer class="page-footer blue">
+    <div class="navbar">
+        <nav>
+            <div class="nav-wrapper blue">
+                <ul class="left">
+                    <li style="padding-left: 10px">Call 07712877368</li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</footer>
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="static/js/materialize.js"></script>
+<script src="static/js/init.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#modalButton').on('click', function() {
+            $('#uploadModal').modal('open');
+        });
+
+        $('#uploadForm').submit(function(){
+            var fileName = $("#pic-field").val();
+
+            if(!fileName) { // returns true if the string is not empty
+                return false;
+            }
+            document.getElementById("loader").style.display = "block";
+            document.getElementById("uploadForm").style.display = "none";
+        });
+    });
+
+</script>
+</body>
+</html>
