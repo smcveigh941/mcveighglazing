@@ -21,6 +21,5 @@ def get_project_settings():
         SECRET_KEY=os.urandom(24),
         MAIL_USE_TLS=False,
         MAIL_USE_SSL=True,
-        PREFERRED_URL_SCHEME='https'
     )
     return settings
