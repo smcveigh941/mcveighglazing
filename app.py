@@ -13,6 +13,9 @@ app.config.update(get_project_settings())
 
 mail = Mail(app)
 
+SESSION_COOKIE_HTTPONLY = False
+SESSION_COOKIE_SECURE = True
+
 
 @app.route('/sitemap.xml')
 def static_from_root():
@@ -111,7 +114,7 @@ def submit_story():
     msg = Message('Story Submitted', sender=app.config.get('MAIL_USERNAME'), recipients=app.config.get('MAIL_RECIPIENTS'))
     msg.body = "Someone has submitted a testimonial to the website.\n\n" + "Name: " + name + "\n\nMessage: \n\n" + story + "\n\nLog in to the website to review this testimonial"
     mail.send(msg)
-    return redirect(url_for('testimonials', storysent=True, _external=True,_scheme='https'))
+    return redirect(url_for('testimonials', storysent=True, _external=True, _scheme='https'))
 
 
 @app.route("/logout")
