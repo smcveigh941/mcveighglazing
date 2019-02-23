@@ -88,7 +88,7 @@ def manage_story():
             if ("[" + str(i) + "]") in request.form.keys():
                 delete_story(stories[i][0])
 
-    return redirect(url_for('testimonials'))
+    return redirect(url_for('testimonials', _external=True,_scheme='https'))
 
 
 @app.route("/sendmessage", methods=['POST'])
@@ -100,7 +100,7 @@ def sendmessage():
     msg = Message('Job Query', sender=app.config.get('MAIL_USERNAME'), recipients=app.config.get('MAIL_RECIPIENTS'))
     msg.body = name + " has sent you a message using the website.\n\n" + "Phone Number: " + number + "\nEmail: " + email + "\n\nMessage: \n\n" + message
     mail.send(msg)
-    return redirect(url_for('contact', messagesent=True))
+    return redirect(url_for('contact', messagesent=True, _external=True,_scheme='https'))
 
 
 @app.route("/submitstory", methods=['POST'])
@@ -111,13 +111,13 @@ def submit_story():
     msg = Message('Story Submitted', sender=app.config.get('MAIL_USERNAME'), recipients=app.config.get('MAIL_RECIPIENTS'))
     msg.body = "Someone has submitted a testimonial to the website.\n\n" + "Name: " + name + "\n\nMessage: \n\n" + story + "\n\nLog in to the website to review this testimonial"
     mail.send(msg)
-    return redirect(url_for('testimonials', storysent=True))
+    return redirect(url_for('testimonials', storysent=True, _external=True,_scheme='https'))
 
 
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect(url_for('main'))
+    return redirect(url_for('main', _external=True,_scheme='https'))
 
 
 @app.route("/login", methods=['POST'])
@@ -125,7 +125,7 @@ def login():
     input = request.form['authcode']
     if input == app.config.get('AUTH_PASSWORD'):
         session['admin'] = "True"
-        return redirect(url_for('main'))
+        return redirect(url_for('main', _external=True,_scheme='https'))
     else:
         return render_template('error.html', error=dict(title="Authorisation Code Invalid",
                                                         message="The authorisation code you entered was not valid. "
@@ -158,7 +158,7 @@ def delete_image():
     file = request.args.get('file')
     page = request.args.get('page')
     os.remove(os.path.join('static/images/uploads', file))
-    return redirect(url_for('gallery', page=page))
+    return redirect(url_for('gallery', page=page, _external=True,_scheme='https'))
 
 
 @app.route("/testimonials")
@@ -205,7 +205,7 @@ def upload():
 
         image.save(os.path.join('static/images/uploads', new_name))
         image.close()
-    return redirect(url_for('gallery'))
+    return redirect(url_for('gallery', _external=True,_scheme='https'))
 
 
 @app.errorhandler(500)
