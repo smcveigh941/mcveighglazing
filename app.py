@@ -100,10 +100,20 @@ def sendmessage():
     number = request.form['number']
     email = request.form['email']
     message = request.form['message']
-    msg = Message('Job Query', sender=app.config.get('MAIL_USERNAME'), recipients=app.config.get('MAIL_RECIPIENTS'))
-    msg.body = name + " has sent you a message using the website.\n\n" + "Phone Number: " + number + "\nEmail: " + email + "\n\nMessage: \n\n" + message
-    mail.send(msg)
-    return redirect(url_for('contact', messagesent=True, _external=True,_scheme='https'))
+    blacklisted_words = [line.rstrip('\n') for line in open('blacklist.txt')]
+    messagesent = True
+
+    for word in blacklisted_words:
+        if word in message.lower():
+            messagesent = False
+            break
+
+    if messagesent:
+        msg = Message('Job Query', sender=app.config.get('MAIL_USERNAME'), recipients=app.config.get('MAIL_RECIPIENTS'))
+        msg.body = name + " has sent you a message using the website.\n\n" + "Phone Number: " + number + "\nEmail: " + email + "\n\nMessage: \n\n" + message
+        mail.send(msg)
+
+    return redirect(url_for('contact', messagesent=messagesent, _external=True,_scheme='https'))
 
 
 @app.route("/submitstory", methods=['POST'])
@@ -111,10 +121,22 @@ def submit_story():
     name = request.form['name']
     story = request.form['story']
     add_story(dict(name=name, message=story))
-    msg = Message('Story Submitted', sender=app.config.get('MAIL_USERNAME'), recipients=app.config.get('MAIL_RECIPIENTS'))
-    msg.body = "Someone has submitted a testimonial to the website.\n\n" + "Name: " + name + "\n\nMessage: \n\n" + story + "\n\nLog in to the website to review this testimonial"
-    mail.send(msg)
-    return redirect(url_for('testimonials', storysent=True, _external=True, _scheme='https'))
+
+    blacklisted_words = [line.rstrip('\n') for line in open('blacklist.txt')]
+
+    messagesent = True
+
+    for word in blacklisted_words:
+        if word in story.lower():
+            messagesent = False
+            break
+
+    if messagesent:
+        msg = Message('Story Submitted', sender=app.config.get('MAIL_USERNAME'), recipients=app.config.get('MAIL_RECIPIENTS'))
+        msg.body = "Someone has submitted a testimonial to the website.\n\n" + "Name: " + name + "\n\nMessage: \n\n" + story + "\n\nLog in to the website to review this testimonial"
+        mail.send(msg)
+
+    return redirect(url_for('testimonials', storysent=messagesent, _external=True, _scheme='https'))
 
 
 @app.route("/logout")
