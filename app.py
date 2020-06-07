@@ -18,9 +18,12 @@ SESSION_COOKIE_SECURE = True
 
 
 @app.route('/sitemap.xml')
-def static_from_root():
+def sitemap_from_root():
     return send_from_directory(app.static_folder, request.path[1:])
 
+@app.route('/robots.txt')
+def robots_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
 
 def get_connection():
     return sqlite3.connect(app.config['DATABASE'])
