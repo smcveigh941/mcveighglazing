@@ -1,9 +1,8 @@
-from builtins import len
+from builtins import len, open
 
 from flask import Flask, render_template, request, redirect, session, send_from_directory, url_for
 from flask_mail import Mail, Message
 from settings import get_project_settings
-import os
 import json
 
 app = Flask(__name__)
@@ -34,15 +33,15 @@ def main():
 @app.route("/sendmessage", methods=['POST'])
 def sendmessage():
     name = request.form['name']
-    number = request.form['number']
+    number = request.form['telephone']
     email = request.form['email']
     message = request.form['message']
-    honeypot = request.form['address']
+    honeypot = request.form['honeypot']
 
     if len(honeypot) > 0:
         return json.dumps({'success': False}), 400, {'ContentType': 'application/json'}
 
-    blacklisted_words = [line.rstrip('\n') for line in os.open('blacklist.txt')]
+    blacklisted_words = [line.rstrip('\n') for line in open('blacklist.txt')]
     message_ok = True
 
     for word in blacklisted_words:

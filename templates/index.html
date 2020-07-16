@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.rawgit.com/tonystar/float-label-css/v1.0.2/dist/float-label.min.css"/>
-    <link rel="stylesheet" href="static/css/main.css">
-    <link rel="icon" href="static/assets/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="icon" href="../static/assets/favicon.ico" type="image/x-icon"/>
     <title>McVeigh Glazing - uPVC glazing fitters and suppliers in the Dungannon area</title>
     <meta name="google-site-verification" content="BhggEQzpYFc36C6e4Ig5OQx1iqdUotM9OjoG87aKQT4" />
     <meta name="description" content="McVeigh Glazing are suppliers and fitters of a wide variety of windows, glass, doors and conservatories. We offer repairs and double glazing services in the Dungannon and Tyrone area of Northern Ireland"/>
@@ -16,7 +16,7 @@
 <body>
 <header>
     <div class="logo">
-        <img src="static/assets/logov2.svg" alt="McVeigh Glazing logo"/>
+        <img src="../static/assets/logov2.svg" alt="McVeigh Glazing logo"/>
     </div>
     <div class="contact-details">
         <div class="icons">
@@ -40,7 +40,7 @@
             <p>With over 35 years of experience, we have been able to build up an excellent reputation for friendly customer service our customers can rely on.</p>
             <a class="button">Get a Quote</a>
         </div>
-        <img src="static/assets/ANH6573.svg" alt="Picture of work done at a patio">
+        <img src="../static/assets/ANH6573.svg" alt="Picture of work done at a patio">
     </div>
     <div class="pair pair-tablet">
         <div class="text">
@@ -48,7 +48,7 @@
             <p>Customer service is of utmost importance to us and we ensure that every job is completed to the highest standards as quickly and as efficiently as possible. Testimony to this is that most of our work comes from word of mouth recommendations.</p>
             <p>We believe that the personal service we provide and the relationship we develop with our customers is why they return to us time and again and are always happy to refer our services to others.</p>
         </div>
-        <img src="static/assets/Triple-Track-HERO.svg" alt="Picture of glazing work in a kitchen">
+        <img src="../static/assets/Triple-Track-HERO.svg" alt="Picture of glazing work in a kitchen">
     </div>
     <div class="pair pair-reverse pair-tablet">
         <div class="text">
@@ -66,7 +66,7 @@
                 <li>Efficient repairs</li>
             </ul>
         </div>
-        <img src="static/assets/6-3.svg" alt="Picture of work done at a 2 story house">
+        <img src="../static/assets/6-3.svg" alt="Picture of work done at a 2 story house">
     </div>
     <div class="testimony">
         <p>
@@ -91,7 +91,7 @@
                     <span class="address">35 Legilly Road, Dungannon, BT701QG</span>
                 </div>
             </div>
-            <form action="#">
+            <form>
                 <div class="has-float-label">
                     <input class="textbox" id="name" type="text" name="name" placeholder="Joe Bloggs"/>
                     <label for="name">Name</label>
@@ -109,7 +109,9 @@
                     <label for="message">Message</label>
                 </div>
                 <label for="address"></label><input class="hon" type="text" id="address" name="address">
-                <button type="submit" class="button">Submit</button>
+                <a id="submit" class="button show">Submit</a>
+                <i id="spinner" class="fa fa-spinner submit spin hide"></i>
+                <i id="tick" class="fa fa-check-circle submit tick hide"></i>
             </form>
         </div>
     </div>
@@ -124,5 +126,6 @@
         <i class="fa fa-github" aria-hidden="true"></i>
     </div>
 </footer>
+<script src="../static/js/submit-form.js"></script>
 </body>
 </html>
