@@ -20,6 +20,7 @@ def get_project_settings():
         MAIL_USERNAME=config['MAIL_USERNAME'],
         MAIL_PASSWORD=config['MAIL_PASSWORD'],
         MAIL_RECIPIENTS=config['MAIL_RECIPIENTS'],
+        SEND_FILE_MAX_AGE_DEFAULTS=config['CACHE_CONTROL'],
         SECRET_KEY=os.urandom(24),
         MAIL_USE_TLS=False,
         MAIL_USE_SSL=True,

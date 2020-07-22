@@ -3,5 +3,6 @@
   "MAIL_PORT":465,
   "MAIL_USERNAME":"<user name of the email account sending your emails>",
   "MAIL_PASSWORD":"<password of the email account sending your emails>",
-  "MAIL_RECIPIENTS":["recipient email addresses"]
+  "MAIL_RECIPIENTS":["recipient email addresses"],
+  "CACHE_CONTROL": 31536000
 }
