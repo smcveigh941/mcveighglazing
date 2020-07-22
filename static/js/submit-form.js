@@ -77,7 +77,7 @@ function validate(name, telephone, email, message) {
     value = email.value;
     if (value == null || value === "") {
         notValid(email);
-        valid = false;
+        valid = true;
     } else if (!regexEmail.test(value)) {
         notValid(email);
         valid = false;

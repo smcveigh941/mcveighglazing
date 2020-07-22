@@ -202,7 +202,7 @@ i.spin {
 /*
     Map
  */
-.map iframe {
+.map img {
     width: 100%;
     height: 100%;
 }
@@ -410,6 +410,10 @@ footer .fa {
     .pair.pair-desktop .map {
         width: 50%;
         height: 610px;
+    }
+
+    .pair.pair-desktop .map img {
+        max-height: none;
     }
 
     .pair.pair-desktop .text {
