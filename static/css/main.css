@@ -335,6 +335,7 @@ footer .fa {
 
     .pair.pair-tablet .text {
         width: 50%;
+        margin: auto;
     }
 
     .pair.pair-tablet img {
