@@ -1,0 +1,22 @@
+{
+  "connection": {
+    "port": "$$PORT"
+  },
+  "healthCheck": {
+    "url": "/admin/health-check"
+  },
+  "info": {
+    "url": "/admin/info"
+  },
+  "node": {
+    "env": "$$NODE_ENV"
+  },
+  "mail": {
+    "server": "$$MAIL_SMTP_SERVER",
+    "port": "$$MAIL_PORT",
+    "secure": "$$MAIL_SECURE",
+    "user": "$$MAIL_USERNAME",
+    "password": "$$MAIL_PASSWORD",
+    "recipients": "$$MAIL_RECIPIENTS"
+  }
+}
