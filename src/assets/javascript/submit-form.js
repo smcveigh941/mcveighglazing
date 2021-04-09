@@ -4,7 +4,7 @@ btnSubmit.addEventListener('click', submit);
 
 function submit() {
     let http = new XMLHttpRequest();
-    http.open("POST", "/sendmessage", true);
+    http.open("POST", "/send-message", true);
     http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 
     let name = document.getElementById("name");
