@@ -11,8 +11,8 @@
 **/.nyc_output/
 **/coverage/
 **/coverage.html
-**/public/
-**/robots/
+public/
+robots/
 **/ssl
 **/report.xml
 **/.env
