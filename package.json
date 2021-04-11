@@ -14,12 +14,14 @@
     "@hapi/hapi": "^20.1.2",
     "@hapi/inert": "^6.0.3",
     "@hapi/vision": "^6.0.1",
-    "font-awesome": "^4.7.0",
     "getconfig": "^4.5.0",
     "handlebars": "^4.7.7",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "nodemailer": "^6.5.0",
     "winston": "^2.4.4"
+  },
+  "devDependencies": {
+    "font-awesome": "^4.7.0"
   }
 }
