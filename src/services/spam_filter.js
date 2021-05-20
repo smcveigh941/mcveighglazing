@@ -3,6 +3,7 @@ const scan = (message) => {
 }
 
 const blacklist = [
+    'domain',
     'sex',
     'casino',
     'gamble',
