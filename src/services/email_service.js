@@ -13,14 +13,14 @@ const sendMessage = async (name, telephone, email, message) => {
     }
   });
 
-  const info = await transporter.sendMail({
+  transporter.sendMail({
     from: config.mail.user,
     to: config.mail.recipients,
     subject: 'Job Query',
     html: `${name} has sent you a message using the website.<br/>Phone Number: ${telephone}<br/>Email: ${email}<br/>Message: <br/> ${message}`,
-  });
-
-  logger.info("Message sent: %s", info.messageId);
+  })
+  .then(info => logger.info("Message sent: %s", info.messageId))
+  .catch(error => logger.error(error.toString()));
 }
 
 module.exports = {
