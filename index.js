@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const config = require('getconfig')
 const server = require('./src/server')
 const winston = require('winston')
